@@ -1,0 +1,382 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instructions for C-motion replication of Kim et al</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="workflow-template-for-running-c-motion-code-files"><strong>Workflow Template for Running C-Motion Code Files</strong></h1>
+<h2 id="overview"><strong>Overview</strong></h2>
+<p>This document provides a structured workflow to execute C-Motion files in Python notebooks (Google Colab) and MATLAB. The analysis involves NAICS/SIC industry codes and Metropolitan Statistical Areas (MSAs). Follow the steps below to ensure accurate execution and reproducible results.</p>
+<hr>
+<h2 id="step-1-identify-industry-and-msa-for-study"><strong>Step 1: Identify Industry and MSA for Study</strong></h2>
+<ol>
+<li><strong>Define Scope</strong>:
+<ul>
+<li>
+<p><strong>Broad Scope</strong>: Identify the broad industry sector of interest  such as steel, aerospace, motor vehicles, entertainment, etc.  Identify geographical areas (state/region/MSA) where these sectors have shown growth and decline over the time period 1974 - 2022.</p>
+</li>
+<li>
+<p><strong>Narrow Scope</strong>: Identify specific industries dependent on the primary industry identified. Use a product such as motor vehicle for example, and identify the NAICS code.</p>
+<ul>
+<li>Using the following link as a ballpark to identify possible SIC codes and dependent industries codes: <a href="https://www.naics.com/naics-to-sic-crosswalk-2/">https://www.naics.com/naics-to-sic-crosswalk-2/</a>.</li>
+<li>Use the Census crosswalks to confirm portability among SIC and NAICS codes from the following link: <a href="https://www.census.gov/topics/employment/industry-occupation/guidance/code-lists.html">https://www.census.gov/topics/employment/industry-occupation/guidance/code-lists.html</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Industry Code Reference Table</strong>:  The following table illustrates the time period and relevant codes:</p>
+</li>
+</ul>
+</li>
+</ol>
+
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Year Range</strong></th>
+<th align="left"><strong>Classification System</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">1974–1996</td>
+<td align="left">SIC (Standard Industrial Classification)</td>
+</tr>
+<tr>
+<td align="left">1997–2001</td>
+<td align="left">NAICS 1997</td>
+</tr>
+<tr>
+<td align="left">2002–2006</td>
+<td align="left">NAICS 2002</td>
+</tr>
+<tr>
+<td align="left">2007–2011</td>
+<td align="left">NAICS 2007</td>
+</tr>
+<tr>
+<td align="left">2012–2016</td>
+<td align="left">NAICS 2012</td>
+</tr>
+<tr>
+<td align="left">2017–2022</td>
+<td align="left">NAICS 2017</td>
+</tr>
+</tbody>
+</table><ol start="2">
+<li><strong>Select NAICS/SIC Codes</strong>:
+<ul>
+<li>Use the table below to document selected codes. The Primary Industry column is to help ascertain the scope, most often the industry code will be directly connected and hence the primary industry.</li>
+</ul>
+</li>
+</ol>
+
+<table>
+<thead>
+<tr>
+<th align="left">Primary Industry</th>
+<th align="left">SIC Code &amp; Description</th>
+<th align="left">NAICS Code &amp; Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table><ol start="3">
+<li>Identify a few MSA’s of interest, listing out the MSA code and Name. If possible, identify major events relevant to the MSA, such as plant opening/closures and the year in which it took place.</li>
+</ol>
+<hr>
+<h2 id="step-2-run-crosswalks-for-industry-and-msa-in-google-colab"><strong>Step 2: Run Crosswalks for Industry and MSA in Google Colab</strong></h2>
+<ol>
+<li>Open the provided Google Colab notebooks: First, <code>1_Crosswalks-Industry.ipynb</code> and <code>2_Crosswalks-MSA.ipynb</code> next.</li>
+<li>Follow instructions provided in the markdown under Google Colab notebooks. Ensure the following:
+<ul>
+<li>All data files are downloaded and directories on google drive created as per instructions.</li>
+<li>Industry, MSA codes, and, column numbers are substituted in the code appropriately.</li>
+<li>File paths and file names are modified as needed.</li>
+</ul>
+</li>
+<li>Sequentially run the following python files:</li>
+</ol>
+<ul>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> <strong>Step 1</strong>: <code>1_Crosswalks-Industry.ipynb</code>. This code requires previously tabulated SIC/NAICS codes to be entered in the code. The output “CombinedFiles.csv” aggregates establishment counts from County Business Patterns data for selected industry codes over the time period 1974-2023.</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> <strong>Step 2</strong>: <code>2_Crosswalks-MSA.ipynb</code>. This requires users to enter the MSA codes and Names identified earlier in addition to industry codes. Two output files and corresponding plots are generates:<br>
+- Aggregate establishments over all MSA’s for specific industry codes over time.<br>
+- Aggregate establishments over each MSA for specific codes over time.</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> <strong>Step 3</strong>: Analyze plots generated eyeballing for any sudden peaks and troughs. Look for following patterns:
+<ul>
+<li>Do the spikes in data correlate with NAICS/SIC code changes? These are indicated with dotted lines in the plot and corresponds to <a href="#Link">Industry Code Reference Table</a> from earlier.</li>
+</ul>
+</li>
+</ul>
+<ol start="5">
+<li>Use the table below to track files and modifications:</li>
+</ol>
+
+<table>
+<thead>
+<tr>
+<th align="left">File Name</th>
+<th align="left">Description</th>
+<th align="left">MATLAB Input</th>
+<th align="left">Date Updated</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>CombinedFile.csv</code></td>
+<td align="left">Annual Establishment counts for each industry code</td>
+<td align="left">No</td>
+<td align="left">mm/dd/yyyy</td>
+</tr>
+<tr>
+<td align="left"><code>est_industry_year</code></td>
+<td align="left">Annual Aggregate Establishment Counts</td>
+<td align="left">Yes, Stage 1</td>
+<td align="left">mm/dd/yyyy</td>
+</tr>
+<tr>
+<td align="left"><code>est_industry_year_cbsaxxxxx</code></td>
+<td align="left">Annual Aggregate Establishment Counts for CBSA/MSA xxxxx</td>
+<td align="left">Yes, Stage 1</td>
+<td align="left">mm/dd/yyyy</td>
+</tr>
+</tbody>
+</table><hr>
+<h2 id="step-3-run-stage-1-of-c-motion-monte-carlo-simulation-in-matlab"><strong>Step 3: Run Stage 1 of C-Motion (Monte Carlo Simulation) in MATLAB</strong></h2>
+<ol>
+<li>
+<p><strong>Prepare to run MATLAB files</strong><br>
+MATLAB uses relative paths for file references. Files without explicit paths are assumed to be in the same directory as the script. To access files in other directories:</p>
+<pre class=" language-matlab"><code class="prism  language-matlab"><span class="token comment">% Access a file in a subdirectory located in a folder one level above</span>
+filename <span class="token operator">=</span> <span class="token function">fullfile</span><span class="token punctuation">(</span><span class="token string">'directoryname'</span><span class="token punctuation">,</span> <span class="token string">'filename.xlsx'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+data <span class="token operator">=</span> <span class="token function">readtable</span><span class="token punctuation">(</span>filename<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">% Or use like this </span>
+data <span class="token operator">=</span> <span class="token function">readtable</span><span class="token punctuation">(</span><span class="token function">dir</span><span class="token punctuation">(</span><span class="token string">'directoryname/filename.xlsx'</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li>
+<p><strong>Ensure required input files and directories are available:</strong></p>
+<ul>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> <code>pop_year_cbsa.csv</code> : Population per MSA from Census.</li>
+<li>Ensure population data covers all years under study</li>
+<li>For shorter time periods, remove rows for years not needed</li>
+<li>For periods beyond 2016, use the provided population file</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> <a href="#previous"><code>est_industry_year.xlsx</code></a> from crosswalk output.</li>
+<li>Place this file in the same directory as the MATLAB script</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> <a href="#previous"><code>est_industry_year_cbsaxxxxx.xlsx</code></a> files from crosswalk output.</li>
+<li>Create a folder named  <code>crosswalk_outputs</code>  in the same location as the MATLAB script</li>
+<li>Copy all crosswalk output files into this folder</li>
+<li>The code will access these files using:</li>
+</ul>
+<pre class=" language-matlab"><code class="prism  language-matlab"><span class="token comment">%% Process multiple CBSA files</span>
+cbsa_files <span class="token operator">=</span> <span class="token function">dir</span><span class="token punctuation">(</span><span class="token string">'crosswalk_outputs/est_autocore_year_cbsa*.xlsx'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<ul>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="">  Output directories</li>
+<li>The program will write outputs to  <code>C:\MatlabStep1_outputs</code></li>
+<li>If this directory doesn’t exist, the program will create it (given proper permissions)</li>
+<li>You may also need  <code>C:\MatlabStep2_outputs</code>  for later steps</li>
+<li>The code creates directories as needed:</li>
+</ul>
+<pre class=" language-matlab"><code class="prism  language-matlab"><span class="token comment">%% Initialize output directory</span>
+outputDir <span class="token operator">=</span> <span class="token string">'C:\MatlabStep1_outputs'</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token operator">~</span><span class="token function">exist</span><span class="token punctuation">(</span>outputDir<span class="token punctuation">,</span> <span class="token string">'dir'</span><span class="token punctuation">)</span>
+   <span class="token function">mkdir</span><span class="token punctuation">(</span>outputDir<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span>
+</code></pre>
+</li>
+<li>
+<p><strong>Run the MATLAB script</strong></p>
+<ul>
+<li>Open <code>Step 1 - Concentration_levels_seed0_Updated.m</code> in MATLAB</li>
+<li>Execute the script</li>
+</ul>
+</li>
+<li>
+<p><strong>Verify output files</strong></p>
+<ul>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="">  <code>Clevel_CBSA_xxxxx.xlsx</code> files should be created in <code>C:\MatlabStep1_outputs\CBSA_Files</code> (where <code>xxxxx</code>is the CBSA/MSA code)</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> <code>MC_output_xxxx.txt</code> files should be created (where <code>xxxx</code> is the CBSA/MSA code)</li>
+</ul>
+</li>
+<li>
+<p><strong>Check for success messages</strong>  in the MATLAB command window to confirm successful execution</p>
+</li>
+</ol>
+<hr>
+<h2 id="step-5-run-stage-2-of-c-motion-break-analysis-and-dynamics-calculations-in-matlab"><strong>Step 5: Run Stage 2 of C-Motion (break analysis and dynamics calculations) in MATLAB</strong></h2>
+<ol>
+<li>
+<p><strong>Ensure required input files and directories are available:</strong></p>
+<ul>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="">  Stage 1 outputs: <code>Clevel_CBSA_xxxxx.xlsx</code></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="">   <code>supp_files</code>  directory exists one directory level 	 above where your script is located. For example:<br>
+<code>..MATLAB\Clulster_dynamics.m\Cluster_dynamics.m</code><br>
+Then supplementary files are located here:<br>
+<code>..MATLAB\supp_files</code><br>
+MATLAB/<br>
+├── Cluster_dynamics.m/<br>
+│   └── Cluster_dynamics.m    (your main script)<br>
+└── supp_files/               (supplementary files directory)<br>
+└── [supplementary files]<br>
+Here is the code snippet that looks for this:<pre class=" language-matlab"><code class="prism  language-matlab"><span class="token comment">% Directory containing the sub-files</span>
+suppDir <span class="token operator">=</span> <span class="token function">fullfile</span><span class="token punctuation">(</span><span class="token string">'..'</span><span class="token punctuation">,</span> <span class="token string">'supp_files'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">% Move up one directory level</span>
+<span class="token keyword">if</span> <span class="token function">exist</span><span class="token punctuation">(</span>suppDir<span class="token punctuation">,</span> <span class="token string">'dir'</span><span class="token punctuation">)</span>
+	<span class="token function">addpath</span><span class="token punctuation">(</span>suppDir<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">else</span>
+	<span class="token function">warning</span><span class="token punctuation">(</span><span class="token string">'Supp files directory not found: %s'</span><span class="token punctuation">,</span> suppDir<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span>
+</code></pre>
+</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="">  Output directories
+<ul>
+<li>The program will write outputs to  <code>C:\MatlabStep2_outputs</code></li>
+<li>If this directory doesn’t exist, the program will create it (given proper permissions)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Modify parameters - Exclude breaks attributable to changes in industry codes</strong></p>
+<ul>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="">  Change <code>exception_years</code>if needed, leave blank otherwise.<pre class=" language-matlab"><code class="prism  language-matlab"><span class="token comment">% Define exception years</span>
+exception_years <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1997</span><span class="token punctuation">,</span> <span class="token number">2012</span><span class="token punctuation">,</span> <span class="token number">2017</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Handle exception years</span>
+<span class="token keyword">if</span> <span class="token operator">~</span><span class="token function">isempty</span><span class="token punctuation">(</span>daty<span class="token punctuation">)</span>
+	break_years <span class="token operator">=</span> start_year <span class="token operator">+</span> daty <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+	valid_breaks <span class="token operator">=</span> <span class="token operator">~</span><span class="token function">ismember</span><span class="token punctuation">(</span>break_years<span class="token punctuation">,</span> exception_years<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	daty <span class="token operator">=</span> <span class="token function">daty</span><span class="token punctuation">(</span>valid_breaks<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Run the MATLAB script</strong></p>
+<ul>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="">  Open <code>Step 2 - Cluster_Dynamics.m</code> in MATLAB</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="">  Execute the script</li>
+</ul>
+</li>
+<li>
+<p><strong>Verify output files</strong><br>
+Note for the following section: <code>xxxxx</code> is the CBSA/MSA code in  following files. All files are created under <code>C:\MatlabStep2_outputs</code>:</p>
+<ul>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="">  <code>regression_output_industry_est_cbsaxxxxx.xlsx</code></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Ignore following files: <code>regression_output_industry_est_cbsaxxxxx.csv</code></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> <code>break_tests_cbsaxxxxx.csv</code></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> <code>break_dates_cbsaxxxxx.csv</code></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> <code>BP_log_cbsaxxxxx.txt</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Check for success messages</strong>  in the MATLAB command window to confirm successful execution</p>
+</li>
+<li>
+<p>Document key outputs:</p>
+</li>
+</ol>
+
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Output File Name</strong></th>
+<th align="left"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>regression_output_industry_est_cbsaxxxxx.xlsx</code></td>
+<td align="left">Overall regression results from break analysis</td>
+</tr>
+<tr>
+<td align="left"><code>break_dates_cbsaxxxxx.csv</code></td>
+<td align="left">Break years</td>
+</tr>
+<tr>
+<td align="left"><code>break_tests_cbsaxxxxx.csv</code></td>
+<td align="left">Break test results</td>
+</tr>
+<tr>
+<td align="left"><code>BP_log_cbsaxxxxx.mat</code></td>
+<td align="left">Log file containing all above results</td>
+</tr>
+</tbody>
+</table><hr>
+<h2 id="step-6-analyze-trends-in-industry-using-python"><strong>Step 6: Analyze Trends in Industry Using Python</strong></h2>
+<ul>
+<li class="task-list-item">
+<p><input type="checkbox" class="task-list-item-checkbox" disabled="">  Open the provided Google Colab notebooks: <code>ARIM-break-analysis-OLS.ipynb</code>.</p>
+</li>
+<li>
+<p>Follow instructions provided in the markdown under Google Colab notebooks. Ensure the following:</p>
+<ul>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> All data files are downloaded and directories on google drive created as per instructions: <code>breakanalysis</code> folder,<br>
+<code>Clevel_CBSA_*.xlsx</code> and <code>break_dates_cbsaxxxxx.csv</code> files.</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> MSA codes and, names are substituted in the code appropriately as per instructions.</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> File paths and file names are modified as needed.</li>
+</ul>
+</li>
+<li class="task-list-item">
+<p><input type="checkbox" class="task-list-item-checkbox" disabled=""> Run the program.</p>
+</li>
+<li class="task-list-item">
+<p><input type="checkbox" class="task-list-item-checkbox" disabled=""> Track combined results using this table:</p>
+</li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Result Name</strong></th>
+<th align="left"><strong>Source File(s)</strong></th>
+<th align="left"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Trends for each CBSA/MSA</td>
+<td align="left"><code>plots</code> directory</td>
+<td align="left">OLS results for each break segment</td>
+</tr>
+<tr>
+<td align="left">Break Tests</td>
+<td align="left"><code>break_tests_cbsaxxxxx.csv</code></td>
+<td align="left">Different Break Test results from MATLAB</td>
+</tr>
+<tr>
+<td align="left">Regression Outputs</td>
+<td align="left"><code>regression_output_industry_est_cbsaxxxxx.xlsx</code></td>
+<td align="left">Overall regression results from break analysis</td>
+</tr>
+</tbody>
+</table><hr>
+<h2 id="final-notes"><strong>Final Notes</strong></h2>
+<ul>
+<li>Ensure all file paths are updated throughout the workflow.</li>
+<li>Validate outputs at each stage before proceeding to the next step.</li>
+<li>Save intermediate files for reproducibility.</li>
+</ul>
+<h3 id="adding-images-or-charts">Adding Images or Charts</h3>
+<ul>
+<li>To include visualizations (e.g., charts of results), use Google Docs’ “Insert &gt; Image” feature or paste directly from your local system.</li>
+</ul>
+<hr>
+</div>
+</body>
+
+</html>
